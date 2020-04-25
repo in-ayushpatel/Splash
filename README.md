@@ -1,5 +1,6 @@
 # Splash
 A simple game : https://in-ayushpatel.github.io/Splash/
+
 GAME :
  1. You are on left hand side.
  2. Your goal is to score highest.
