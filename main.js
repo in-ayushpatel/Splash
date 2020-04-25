@@ -52,9 +52,6 @@ function ballReset() {
     ballspeedX = -ballspeedX;
     ballX = c.width/2;
     ballY = c.height/2;
-    if(score<scoreCount){
-        score = scoreCount;
-    }
     scoreCount=0;
     ballspeedY=10;
     pauseScreen = true;
@@ -78,6 +75,9 @@ function toChange() {
             if(scoreCount % 50==0){
                 ballspeedX += 2;
                 paddleHeight -= 10;
+            }
+            if(score<scoreCount){
+                score = scoreCount;
             }
             aiP = Math.floor(Math.random() * paddleHeight-1)+1;
         }else {
