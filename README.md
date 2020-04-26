@@ -1,5 +1,5 @@
 # Splash
-A simple game : https://in-ayushpatel.github.io/Splash/
+A simple game : https://splashgame.netlify.app/
 
 GAME :
  1. You are on left hand side.
