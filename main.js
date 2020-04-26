@@ -12,6 +12,14 @@ var scoreCount=0;
 var aiP=2;
 var pauseScreen = true;
 
+const gameover = new Howl({
+    src: ['/music/gameover.mp3']
+  });
+const hit = new Howl({
+    src: ['/music/hit.mp3']
+});
+  
+
 window.onload = function() {
     ctx = c.getContext('2d');
     var fps;
@@ -49,6 +57,7 @@ function ai() {
 }
 
 function ballReset() {
+    gameover.play();
     ballspeedX = -ballspeedX;
     ballX = c.width/2;
     ballY = c.height/2;
@@ -68,6 +77,7 @@ function toChange() {
     ballX = ballX + ballspeedX;
     if(ballX<10){
         if(ballY>=paddle1Y && ballY<=paddle1Y+paddleHeight){
+            hit.play();
             ballspeedX = -ballspeedX;
             var delltaY = ballY - (paddle1Y + paddleHeight/2);
             ballspeedY = delltaY * .25;
@@ -87,6 +97,7 @@ function toChange() {
     }
     if(ballX>c.width-10){
         if(ballY>=paddle2Y && ballY<=paddle2Y+paddleHeight){
+            hit.play();
             ballspeedX = -ballspeedX;
             var delltaY = ballY - (paddle2Y + paddleHeight/2);
             ballspeedY = delltaY * .25;
@@ -113,6 +124,7 @@ function toDrawAll() {
         ctx.fillText("Best = " + score,470,200);
         ctx.fillText("click to continue..." ,435,400);
         c.addEventListener('click',function(evt) {
+            gameover.stop();
             pauseScreen=false;
         });
         return;
