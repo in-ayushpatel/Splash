@@ -65,6 +65,14 @@ function ballReset() {
 //everything that changes
 function toChange() {
 
+    //local storage load
+    if(!localStorage.getItem('best'))
+     {
+        localStorage.setItem('best','0');
+     }
+    score = localStorage.getItem('best');
+    score = parseInt(score);
+
     if(pauseScreen){
         paddleHeight=150;
         ballspeedX = 10;
@@ -84,6 +92,7 @@ function toChange() {
             }
             if(score<scoreCount){
                 score = scoreCount;
+                localStorage.setItem('best',score); //local storage
             }
             aiP = Math.floor(Math.random() * paddleHeight-1)+1;
         }else {
