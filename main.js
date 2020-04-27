@@ -12,6 +12,7 @@ var scoreCount=0;
 var aiP=2;
 var pauseScreen = true;
 
+//music
 const gameover = new Howl({
     src: ['/music/gameover.mp3']
   });
@@ -19,7 +20,7 @@ const hit = new Howl({
     src: ['/music/hit.mp3']
 });
   
-
+//onload
 window.onload = function() {
     ctx = c.getContext('2d');
     var fps;
@@ -35,7 +36,7 @@ window.onload = function() {
             paddle1Y = position.y - (paddleHeight/2);
         });
 }
-
+//to detect mouse movements
 function mouseMove(evt) {
     var rect = c.getBoundingClientRect();
     var mouseX = evt.clientX - rect.left;
@@ -45,17 +46,12 @@ function mouseMove(evt) {
         y:mouseY
     };
 }
-
+// Computer 
 function ai() {
-    // var paddle2YCenter = paddle2Y+paddleHeight/2;
-    // if(paddle2YCenter < ballY-35){
-    //     paddle2Y += 6
-    // }else{
-    //     paddle2Y -= 6
-    // }
-    paddle2Y = ballY- aiP; 
+    paddle2Y = ballY- aiP;
 }
 
+//reset game
 function ballReset() {
     gameover.play();
     ballspeedX = -ballspeedX;
@@ -64,9 +60,9 @@ function ballReset() {
     scoreCount=0;
     ballspeedY=10;
     pauseScreen = true;
-    // paddleHeight=150;
 }
 
+//everything that changes
 function toChange() {
 
     if(pauseScreen){
@@ -93,7 +89,6 @@ function toChange() {
         }else {
             ballReset();
         }
-        // ballspeedX = -ballspeedX;
     }
     if(ballX>c.width-10){
         if(ballY>=paddle2Y && ballY<=paddle2Y+paddleHeight){
@@ -105,7 +100,6 @@ function toChange() {
             ballReset();
             ballspeedY=10;
         }
-        // ballspeedX = -ballspeedX;
     }
 
     ballY = ballY + ballspeedY;
@@ -116,6 +110,7 @@ function toChange() {
     
 }
 
+//to draw everything
 function toDrawAll() {
     toDraw(0,0,c.width,c.height,'#00203FFF'); //screen
     if(pauseScreen){
@@ -138,6 +133,7 @@ function toDrawAll() {
     ctx.fillText("Score = " + scoreCount,610,50);
 }
 
+// draw ball
 function toDrawBall(centerX,centerY,radius,drawcolor){
     ctx.fillStyle = drawcolor;
     ctx.beginPath();
