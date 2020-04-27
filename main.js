@@ -8,6 +8,7 @@ var paddleHeight =150;
 var paddle1Y;
 var paddle2Y=200;
 var score = 0;
+var scorePr = 0;
 var scoreCount=0;
 var aiP=2;
 var pauseScreen = true;
@@ -57,6 +58,7 @@ function ballReset() {
     ballspeedX = -ballspeedX;
     ballX = c.width/2;
     ballY = c.height/2;
+    scorePr = scoreCount;
     scoreCount=0;
     ballspeedY=10;
     pauseScreen = true;
@@ -84,7 +86,7 @@ function toChange() {
             hit.play();
             ballspeedX = -ballspeedX;
             var delltaY = ballY - (paddle1Y + paddleHeight/2);
-            ballspeedY = delltaY * .25;
+            ballspeedY = delltaY * .15;
             scoreCount += 10;
             if(scoreCount % 50==0){
                 ballspeedX += 2;
@@ -104,7 +106,7 @@ function toChange() {
             hit.play();
             ballspeedX = -ballspeedX;
             var delltaY = ballY - (paddle2Y + paddleHeight/2);
-            ballspeedY = delltaY * .25;
+            ballspeedY = delltaY * .15;
         }else {
             ballReset();
             ballspeedY=10;
@@ -126,6 +128,7 @@ function toDrawAll() {
         ctx.fillStyle = 'white';
         ctx.font = "20px Georgia";
         ctx.fillText("Best = " + score,470,200);
+        ctx.fillText("Score = " + scorePr,470,300);
         ctx.fillText("click to continue..." ,435,400);
         c.addEventListener('click',function(evt) {
             gameover.stop();
@@ -146,7 +149,7 @@ function toDrawAll() {
 function toDrawBall(centerX,centerY,radius,drawcolor){
     ctx.fillStyle = drawcolor;
     ctx.beginPath();
-    ctx.arc(ballX,ballY,5,0,Math.PI*2,true);
+    ctx.arc(ballX,ballY,7,0,Math.PI*2,true);
     ctx.fill();
 }
 
